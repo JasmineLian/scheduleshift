@@ -1,0 +1,2025 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>汐止巷弄站排班登記表 · 2026年6月–12月</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;600;700&family=Noto+Sans+TC:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f5f1e8;
+    --bg-card: #fdfaf2;
+    --bg-deep: #ebe5d4;
+    --ink: #1a2b25;
+    --ink-soft: #4a5a52;
+    --ink-muted: #8a978f;
+    --line: #d8d0bc;
+    --line-soft: #e6dfcc;
+    --primary: #2d4a3e;
+    --primary-light: #4a6b5c;
+    --accent: #b8814a;
+
+    --shift-morning: #b87d35;
+    --shift-morning-bg: #f5e6c8;
+    --shift-afternoon: #a8503e;
+    --shift-afternoon-bg: #f3d2c6;
+    --shift-evening: #524771;
+    --shift-evening-bg: #dcd4e8;
+
+    --serif: 'Noto Serif TC', 'Songti TC', serif;
+    --sans: 'Noto Sans TC', system-ui, sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    line-height: 1.6;
+    min-height: 100vh;
+    padding: 28px 16px 80px;
+    background-image:
+      radial-gradient(circle at 15% 25%, rgba(184, 129, 74, 0.05) 0%, transparent 45%),
+      radial-gradient(circle at 85% 75%, rgba(45, 74, 62, 0.06) 0%, transparent 50%);
+  }
+
+  .app { max-width: 1100px; margin: 0 auto; }
+
+  /* ── Header ─────────────────── */
+  header {
+    text-align: center;
+    margin-bottom: 32px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--line);
+    position: relative;
+  }
+  header::after {
+    content: "";
+    position: absolute;
+    bottom: -1px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 1px;
+    background: var(--accent);
+  }
+  h1 {
+    font-family: var(--serif);
+    font-size: clamp(28px, 5vw, 40px);
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    color: var(--primary);
+    margin-bottom: 8px;
+  }
+  .subtitle {
+    font-family: var(--serif);
+    color: var(--ink-soft);
+    font-size: 12px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .meta { font-size: 12px; color: var(--ink-muted); letter-spacing: 0.08em; }
+
+  /* ── Name input ─────────────── */
+  .name-section {
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 18px 22px;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    box-shadow: 0 1px 0 rgba(0,0,0,0.02);
+  }
+  .name-label {
+    font-family: var(--serif);
+    font-weight: 500;
+    color: var(--primary);
+    font-size: 15px;
+    letter-spacing: 0.08em;
+    flex-shrink: 0;
+  }
+  .name-input {
+    flex: 1;
+    min-width: 180px;
+    padding: 10px 14px;
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    font-family: var(--sans);
+    font-size: 16px;
+    color: var(--ink);
+    transition: border-color 0.2s;
+  }
+  .name-input:focus {
+    outline: none;
+    border-color: var(--primary);
+    background: var(--bg-card);
+  }
+  .name-hint { font-size: 12px; color: var(--ink-muted); width: 100%; }
+
+  /* ── Month nav ─────────────── */
+  .toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .month-nav {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    flex: 1;
+  }
+  .month-tab {
+    padding: 9px 16px;
+    background: transparent;
+    border: 1px solid var(--line);
+    color: var(--ink-soft);
+    font-family: var(--serif);
+    font-size: 14px;
+    letter-spacing: 0.08em;
+    cursor: pointer;
+    transition: all 0.2s;
+    border-radius: 3px;
+  }
+  .month-tab:hover { border-color: var(--primary); color: var(--primary); }
+  .month-tab.active {
+    background: var(--primary);
+    border-color: var(--primary);
+    color: var(--bg-card);
+  }
+  .toolbar-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+  .action-btn {
+    padding: 9px 14px;
+    background: transparent;
+    border: 1px solid var(--line);
+    color: var(--ink-soft);
+    font-family: var(--sans);
+    font-size: 13px;
+    cursor: pointer;
+    border-radius: 3px;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 500;
+  }
+  .action-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .action-btn .spin { display: inline-block; transition: transform 0.5s; }
+  .action-btn.loading .spin { animation: spin 0.8s linear infinite; }
+  .action-btn.active {
+    background: var(--primary);
+    border-color: var(--primary);
+    color: var(--bg-card);
+  }
+  .action-btn.active:hover {
+    background: var(--primary-light);
+    border-color: var(--primary-light);
+    color: var(--bg-card);
+  }
+  .action-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  .action-btn:disabled:hover {
+    border-color: var(--line);
+    color: var(--ink-soft);
+  }
+  .action-btn .badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 22px;
+    height: 20px;
+    padding: 0 7px;
+    background: var(--bg-deep);
+    color: var(--ink-soft);
+    border-radius: 11px;
+    font-size: 11px;
+    font-weight: 600;
+    margin-left: 4px;
+    font-variant-numeric: tabular-nums;
+  }
+  .action-btn.has-shifts {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+  .action-btn.has-shifts .badge {
+    background: var(--accent);
+    color: var(--bg-card);
+  }
+  .action-btn.has-shifts:hover {
+    background: rgba(184, 129, 74, 0.08);
+    color: var(--accent);
+  }
+
+  /* ── My Shifts list ─────────────── */
+  .my-shifts-body { padding: 0 0 8px; }
+  .my-shifts-empty {
+    padding: 40px 24px;
+    text-align: center;
+    color: var(--ink-muted);
+    font-size: 14px;
+    line-height: 1.8;
+  }
+  .my-shifts-empty .empty-icon {
+    font-family: var(--serif);
+    font-size: 32px;
+    color: var(--line);
+    margin-bottom: 10px;
+  }
+  .my-shifts-summary {
+    padding: 14px 28px;
+    background: var(--bg-deep);
+    border-bottom: 1px solid var(--line);
+    font-family: var(--serif);
+    color: var(--primary);
+    font-size: 14px;
+    letter-spacing: 0.05em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .my-shifts-summary .total-count strong {
+    color: var(--accent);
+    font-size: 20px;
+    font-weight: 700;
+    margin: 0 4px;
+  }
+  .cancel-all-btn {
+    padding: 6px 14px;
+    background: transparent;
+    border: 1px solid rgba(168, 80, 62, 0.4);
+    color: var(--shift-afternoon);
+    border-radius: 3px;
+    font-size: 12px;
+    cursor: pointer;
+    font-family: var(--sans);
+    transition: all 0.15s;
+  }
+  .cancel-all-btn:hover {
+    background: var(--shift-afternoon-bg);
+    border-color: var(--shift-afternoon);
+  }
+  .my-shifts-list { padding: 8px 24px 16px; }
+  .month-group { margin-top: 14px; }
+  .month-group:first-child { margin-top: 6px; }
+  .month-group-header {
+    font-family: var(--serif);
+    font-weight: 600;
+    color: var(--primary);
+    font-size: 13px;
+    letter-spacing: 0.15em;
+    padding: 6px 4px;
+    border-bottom: 1px solid var(--line-soft);
+    margin-bottom: 6px;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+  .month-group-header .month-count {
+    font-size: 12px;
+    color: var(--ink-muted);
+    font-weight: 400;
+    letter-spacing: 0.05em;
+  }
+  .my-shift-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 8px;
+    border-bottom: 1px solid var(--line-soft);
+    transition: background 0.15s;
+  }
+  .my-shift-item:hover { background: var(--bg); }
+  .my-shift-item:last-child { border-bottom: none; }
+  .my-shift-date {
+    font-family: var(--serif);
+    font-size: 14px;
+    color: var(--ink);
+    min-width: 100px;
+    flex-shrink: 0;
+  }
+  .my-shift-date .wd { color: var(--ink-muted); font-size: 12px; margin-left: 4px; }
+  .my-shift-tag {
+    flex: 1;
+    font-size: 13px;
+    padding: 3px 10px;
+    border-radius: 2px;
+    border-left: 3px solid;
+    background: var(--bg);
+  }
+  .my-shift-tag.morning { border-left-color: var(--shift-morning); color: var(--shift-morning); }
+  .my-shift-tag.afternoon { border-left-color: var(--shift-afternoon); color: var(--shift-afternoon); }
+  .my-shift-tag .time {
+    color: var(--ink-muted);
+    font-size: 11px;
+    margin-left: 6px;
+  }
+  .my-shift-cancel {
+    padding: 5px 12px;
+    background: transparent;
+    border: 1px solid var(--line);
+    color: var(--ink-soft);
+    border-radius: 3px;
+    font-size: 12px;
+    cursor: pointer;
+    font-family: var(--sans);
+    transition: all 0.15s;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .my-shift-cancel:hover {
+    border-color: var(--shift-afternoon);
+    color: var(--shift-afternoon);
+    background: var(--shift-afternoon-bg);
+  }
+  .my-shift-cancel:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* ── Legend ─────────────── */
+  .legend {
+    display: flex;
+    justify-content: center;
+    gap: 28px;
+    margin-bottom: 18px;
+    flex-wrap: wrap;
+  }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--ink-soft);
+    font-family: var(--serif);
+  }
+  .legend-dot { width: 10px; height: 10px; border-radius: 2px; }
+
+  /* ── Calendar ─────────────── */
+  .calendar {
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 1px 0 rgba(0,0,0,0.02);
+  }
+  .weekdays {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    background: var(--bg-deep);
+    border-bottom: 1px solid var(--line);
+  }
+  .weekday {
+    padding: 12px 0;
+    text-align: center;
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 13px;
+    letter-spacing: 0.25em;
+    color: var(--primary);
+  }
+
+  .days { display: grid; grid-template-columns: repeat(5, 1fr); }
+  .day {
+    min-height: 100px;
+    padding: 8px 6px 6px;
+    border-right: 1px solid var(--line-soft);
+    border-bottom: 1px solid var(--line-soft);
+    cursor: pointer;
+    transition: background 0.15s;
+    background: var(--bg-card);
+    position: relative;
+  }
+  .day:nth-child(5n) { border-right: none; }
+  .day:hover { background: var(--bg-deep); }
+
+  .day.empty { background: var(--bg); cursor: default; pointer-events: none; }
+  .day.empty:hover { background: var(--bg); }
+
+  .day-num {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 16px;
+    color: var(--ink);
+    margin-bottom: 6px;
+  }
+  .day.today { background: linear-gradient(to bottom, rgba(184, 129, 74, 0.1), transparent 60%); }
+  .day.today .day-num {
+    color: var(--accent);
+    font-weight: 700;
+  }
+  .day.today .day-num::after { content: " ·"; }
+  .day.selected {
+    background: rgba(45, 74, 62, 0.1);
+    box-shadow: inset 0 0 0 2px var(--primary);
+  }
+  .day.selected .day-num {
+    color: var(--primary);
+    font-weight: 700;
+  }
+  .day.selected::after {
+    content: "✓";
+    position: absolute;
+    top: 4px;
+    right: 7px;
+    font-size: 13px;
+    color: var(--primary);
+    font-weight: 700;
+  }
+  .calendar.batch-mode .day:not(.empty) {
+    cursor: pointer;
+  }
+
+  .day-shifts { display: flex; flex-direction: column; gap: 3px; }
+  .day-shift {
+    font-size: 11px;
+    padding: 4px 7px;
+    border-radius: 2px;
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+    line-height: 1.45;
+    border-left: 2px solid transparent;
+  }
+  .day-shift.empty-slot {
+    background: transparent;
+    color: var(--ink-muted);
+    border: 1px dashed var(--line-soft);
+  }
+  .day-shift.morning {
+    background: var(--shift-morning-bg);
+    border-left-color: var(--shift-morning);
+  }
+  .day-shift.afternoon {
+    background: var(--shift-afternoon-bg);
+    border-left-color: var(--shift-afternoon);
+  }
+  .day-shift.empty-slot.morning { background: transparent; border-left-color: var(--shift-morning); }
+  .day-shift.empty-slot.afternoon { background: transparent; border-left-color: var(--shift-afternoon); }
+  .shift-tag {
+    font-family: var(--serif);
+    font-weight: 600;
+    flex-shrink: 0;
+    font-size: 11px;
+    letter-spacing: 0.05em;
+  }
+  .day-shift.morning .shift-tag { color: var(--shift-morning); }
+  .day-shift.afternoon .shift-tag { color: var(--shift-afternoon); }
+  .day-shift.empty-slot .shift-tag { color: var(--ink-muted); font-weight: 500; }
+  .shift-names-inline {
+    color: var(--ink);
+    flex: 1;
+    word-break: break-word;
+    overflow-wrap: anywhere;
+    min-width: 0;
+  }
+  .shift-names-inline.empty { color: var(--ink-muted); font-style: italic; font-size: 10px; }
+  .shift-names-inline .name-mine {
+    font-weight: 700;
+    color: var(--primary);
+    background: rgba(45, 74, 62, 0.08);
+    padding: 0 4px;
+    border-radius: 2px;
+  }
+  .shift-names-inline .name-overflow { color: var(--ink-muted); font-weight: 500; }
+  .day-shift.mine { box-shadow: 0 0 0 1px currentColor inset; }
+  .shift-count { font-weight: 600; }
+
+  /* ── Summary bar ────────── */
+  .summary {
+    margin-top: 20px;
+    padding: 14px 18px;
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    font-size: 13px;
+    color: var(--ink-soft);
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .summary-label {
+    font-family: var(--serif);
+    color: var(--primary);
+    font-weight: 500;
+    letter-spacing: 0.05em;
+  }
+  .summary-item strong { color: var(--ink); font-weight: 600; }
+
+  /* ── Batch bar ─────────────── */
+  .batch-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--bg-card);
+    border-top: 2px solid var(--primary);
+    box-shadow: 0 -6px 24px rgba(26, 43, 37, 0.15);
+    padding: 14px 20px;
+    z-index: 50;
+    transform: translateY(110%);
+    transition: transform 0.28s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .batch-bar.show { transform: translateY(0); }
+  .batch-bar-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .batch-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .batch-row.header {
+    justify-content: space-between;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--line-soft);
+    gap: 16px;
+  }
+  .batch-status {
+    font-family: var(--serif);
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+  .batch-status .title-tag {
+    font-weight: 600;
+    color: var(--primary);
+    font-size: 15px;
+    letter-spacing: 0.05em;
+  }
+  .batch-status .count-text {
+    font-size: 13px;
+    color: var(--ink-soft);
+    font-family: var(--sans);
+  }
+  .batch-status .count-text strong {
+    color: var(--accent);
+    font-size: 18px;
+    font-weight: 700;
+    margin: 0 3px;
+  }
+  .batch-exit-btn {
+    padding: 5px 12px;
+    background: transparent;
+    border: 1px solid var(--line);
+    color: var(--ink-soft);
+    font-size: 12px;
+    cursor: pointer;
+    border-radius: 3px;
+    letter-spacing: 0.05em;
+    font-family: var(--sans);
+  }
+  .batch-exit-btn:hover { border-color: var(--shift-afternoon); color: var(--shift-afternoon); }
+  .batch-label {
+    font-family: var(--serif);
+    font-size: 12px;
+    color: var(--ink-muted);
+    letter-spacing: 0.15em;
+    flex-shrink: 0;
+  }
+  .batch-quick-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+  .batch-quick-buttons button {
+    padding: 5px 11px;
+    background: var(--bg);
+    border: 1px solid var(--line);
+    color: var(--ink-soft);
+    font-size: 12px;
+    cursor: pointer;
+    border-radius: 3px;
+    transition: all 0.15s;
+    font-family: var(--sans);
+  }
+  .batch-quick-buttons button:hover {
+    background: var(--bg-deep);
+    border-color: var(--primary);
+    color: var(--primary);
+  }
+  .batch-quick-buttons button.clear-btn {
+    color: var(--shift-afternoon);
+    border-color: rgba(168, 80, 62, 0.3);
+  }
+  .batch-quick-buttons button.clear-btn:hover {
+    background: var(--shift-afternoon-bg);
+    border-color: var(--shift-afternoon);
+  }
+  .batch-quick-buttons button.day-btn {
+    min-width: 46px;
+    font-variant-numeric: tabular-nums;
+    font-family: var(--sans);
+  }
+  .batch-quick-buttons button.day-btn .d-wd {
+    font-size: 10px;
+    margin-left: 3px;
+    opacity: 0.5;
+    font-weight: 400;
+  }
+  .batch-quick-buttons button.day-btn.active {
+    background: var(--primary);
+    border-color: var(--primary);
+    color: var(--bg-card);
+    font-weight: 600;
+  }
+  .batch-quick-buttons button.day-btn.active .d-wd {
+    opacity: 0.85;
+  }
+  .batch-quick-buttons button.day-btn.active:hover {
+    background: var(--primary-light);
+    border-color: var(--primary-light);
+    color: var(--bg-card);
+  }
+  .week-gap {
+    width: 10px;
+    flex-shrink: 0;
+  }
+  .quick-divider {
+    width: 1px;
+    height: 22px;
+    background: var(--line);
+    margin: 0 6px;
+    align-self: center;
+    flex-shrink: 0;
+  }
+  .batch-shift-selector {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .shift-pick {
+    padding: 7px 16px;
+    background: var(--bg);
+    border: 1px solid var(--line);
+    color: var(--ink-soft);
+    font-family: var(--serif);
+    font-size: 13px;
+    cursor: pointer;
+    border-radius: 3px;
+    transition: all 0.15s;
+    letter-spacing: 0.05em;
+    font-weight: 500;
+  }
+  .shift-pick:hover { border-color: var(--ink-soft); color: var(--ink); }
+  .shift-pick.morning.active {
+    background: var(--shift-morning);
+    border-color: var(--shift-morning);
+    color: var(--bg-card);
+  }
+  .shift-pick.afternoon.active {
+    background: var(--shift-afternoon);
+    border-color: var(--shift-afternoon);
+    color: var(--bg-card);
+  }
+  .batch-actions {
+    display: flex;
+    gap: 8px;
+    margin-left: auto;
+  }
+  .batch-btn {
+    padding: 9px 18px;
+    border: 1px solid;
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: 3px;
+    transition: all 0.15s;
+    letter-spacing: 0.05em;
+  }
+  .batch-btn.add {
+    background: var(--primary);
+    border-color: var(--primary);
+    color: var(--bg-card);
+  }
+  .batch-btn.add:hover:not(:disabled) { background: var(--primary-light); }
+  .batch-btn.remove {
+    background: transparent;
+    border-color: var(--line);
+    color: var(--ink-soft);
+  }
+  .batch-btn.remove:hover:not(:disabled) {
+    border-color: var(--shift-afternoon);
+    color: var(--shift-afternoon);
+  }
+  .batch-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+  body.batch-active { padding-bottom: 240px; }
+
+  /* ── Modal ─────────────── */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(26, 43, 37, 0.55);
+    backdrop-filter: blur(4px);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    padding: 16px;
+    z-index: 100;
+    animation: fadeIn 0.2s ease-out;
+  }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  .modal-overlay.show { display: flex; }
+
+  .modal {
+    background: var(--bg-card);
+    border-radius: 4px;
+    max-width: 540px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    animation: slideUp 0.25s ease-out;
+    border: 1px solid var(--line);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.18);
+  }
+  @keyframes slideUp {
+    from { transform: translateY(16px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+
+  .modal-header {
+    padding: 24px 28px 18px;
+    border-bottom: 1px solid var(--line);
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+  }
+  .modal-date {
+    font-family: var(--serif);
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--primary);
+    letter-spacing: 0.05em;
+  }
+  .modal-weekday {
+    font-size: 12px;
+    color: var(--ink-muted);
+    margin-top: 4px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+  .modal-close {
+    background: none;
+    border: none;
+    font-size: 28px;
+    color: var(--ink-muted);
+    cursor: pointer;
+    line-height: 1;
+    padding: 0;
+    transition: color 0.2s;
+  }
+  .modal-close:hover { color: var(--ink); }
+
+  .modal-body { padding: 8px 28px 24px; }
+
+  .shift-block {
+    padding: 18px 0;
+    border-bottom: 1px solid var(--line-soft);
+  }
+  .shift-block:last-child { border-bottom: none; }
+
+  .shift-block-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    gap: 12px;
+  }
+  .shift-name-wrap { display: flex; align-items: center; gap: 12px; }
+  .shift-marker { width: 4px; height: 28px; border-radius: 1px; }
+  .shift-marker.morning { background: var(--shift-morning); }
+  .shift-marker.afternoon { background: var(--shift-afternoon); }
+  .shift-marker.evening { background: var(--shift-evening); }
+  .shift-name {
+    font-family: var(--serif);
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--ink);
+    letter-spacing: 0.05em;
+  }
+  .shift-time {
+    font-size: 12px;
+    color: var(--ink-muted);
+    letter-spacing: 0.08em;
+    margin-top: 2px;
+  }
+
+  .shift-action-btn {
+    padding: 7px 16px;
+    border-radius: 3px;
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.15s;
+    border: 1px solid;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+  }
+  .shift-action-btn.join {
+    background: var(--primary);
+    border-color: var(--primary);
+    color: var(--bg-card);
+  }
+  .shift-action-btn.join:hover:not(:disabled) { background: var(--primary-light); }
+  .shift-action-btn.leave {
+    background: var(--shift-afternoon-bg);
+    border-color: var(--shift-afternoon);
+    color: var(--shift-afternoon);
+    font-weight: 600;
+  }
+  .shift-action-btn.leave:hover {
+    background: var(--shift-afternoon);
+    color: var(--bg-card);
+  }
+  .shift-action-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+  .shift-people {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    min-height: 32px;
+    align-items: center;
+  }
+  .person-chip {
+    padding: 5px 13px;
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    font-size: 13px;
+    color: var(--ink);
+  }
+  .person-chip.is-me {
+    background: var(--primary);
+    color: var(--bg-card);
+    border-color: var(--primary);
+    font-weight: 500;
+  }
+  .shift-empty {
+    font-size: 13px;
+    color: var(--ink-muted);
+    font-style: italic;
+  }
+
+  /* ── Confirm dialog ─────────────── */
+  .confirm-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(26, 43, 37, 0.6);
+    backdrop-filter: blur(4px);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    padding: 16px;
+    z-index: 300;
+    animation: fadeIn 0.18s ease-out;
+  }
+  .confirm-overlay.show { display: flex; }
+  .confirm-dialog {
+    background: var(--bg-card);
+    border-radius: 4px;
+    max-width: 420px;
+    width: 100%;
+    padding: 22px 26px 18px;
+    border: 1px solid var(--line);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.22);
+    animation: slideUp 0.22s ease-out;
+  }
+  .confirm-title {
+    font-family: var(--serif);
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--primary);
+    letter-spacing: 0.05em;
+    margin-bottom: 10px;
+  }
+  .confirm-message {
+    font-family: var(--sans);
+    font-size: 14px;
+    color: var(--ink);
+    line-height: 1.7;
+    margin-bottom: 22px;
+  }
+  .confirm-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+  }
+  .confirm-btn {
+    padding: 8px 18px;
+    border-radius: 3px;
+    font-family: var(--sans);
+    font-size: 14px;
+    cursor: pointer;
+    border: 1px solid;
+    letter-spacing: 0.05em;
+    transition: all 0.15s;
+    font-weight: 500;
+  }
+  .confirm-cancel {
+    background: transparent;
+    border-color: var(--line);
+    color: var(--ink-soft);
+  }
+  .confirm-cancel:hover {
+    border-color: var(--ink);
+    color: var(--ink);
+  }
+  .confirm-ok {
+    background: var(--shift-afternoon);
+    border-color: var(--shift-afternoon);
+    color: var(--bg-card);
+  }
+  .confirm-ok:hover {
+    background: #913827;
+    border-color: #913827;
+  }
+
+  /* ── Toast ─────────────── */
+  .toast {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--primary);
+    color: var(--bg-card);
+    padding: 11px 22px;
+    border-radius: 3px;
+    font-size: 14px;
+    letter-spacing: 0.08em;
+    opacity: 0;
+    transition: opacity 0.25s;
+    pointer-events: none;
+    z-index: 200;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+  }
+  .toast.show { opacity: 1; }
+  .toast.error { background: var(--shift-afternoon); }
+
+  /* ── Loading ──────────── */
+  .loading-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(253, 250, 242, 0.6);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 5;
+    border-radius: 4px;
+  }
+  .loading-overlay.show { display: flex; }
+  .loading-overlay::after {
+    content: "";
+    width: 24px;
+    height: 24px;
+    border: 2px solid var(--line);
+    border-top-color: var(--primary);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+  .calendar-wrap { position: relative; }
+
+  /* ── Mobile ─────────────── */
+  @media (max-width: 720px) {
+    body { padding: 16px 8px 60px; }
+    .day { min-height: 80px; padding: 4px 3px; }
+    .day-num { font-size: 13px; margin-bottom: 3px; }
+    .day-shift { font-size: 10px; padding: 2px 4px; gap: 3px; line-height: 1.3; }
+    .shift-tag { font-size: 10px; }
+    .shift-names-inline.empty { font-size: 9px; }
+    .weekday { font-size: 11px; padding: 8px 0; letter-spacing: 0.15em; }
+    .month-tab { padding: 8px 12px; font-size: 13px; }
+    .modal-header { padding: 20px 20px 14px; }
+    .modal-body { padding: 8px 20px 20px; }
+    .name-section { padding: 14px 16px; }
+    .legend { gap: 16px; }
+    .toolbar { flex-direction: column; align-items: stretch; }
+    .toolbar-actions { justify-content: center; }
+    .batch-bar { padding: 12px 12px; }
+    .batch-bar-inner { gap: 8px; }
+    .batch-quick-buttons button { padding: 5px 9px; font-size: 11px; }
+    .batch-btn { padding: 8px 12px; font-size: 12px; }
+    .shift-pick { padding: 6px 12px; font-size: 12px; }
+    .batch-status .title-tag { font-size: 13px; }
+    .batch-status .count-text { font-size: 12px; }
+    .batch-actions { width: 100%; margin-left: 0; }
+    .batch-actions .batch-btn { flex: 1; }
+    .batch-row { gap: 8px; }
+    body.batch-active { padding-bottom: 310px; }
+  }
+</style>
+</head>
+<body>
+<div class="app">
+
+  <header>
+    <p class="subtitle">SHIFT REGISTRATION</p>
+    <h1>汐止巷弄站排班登記表</h1>
+    <p class="meta">2026 年 6 月 — 12 月 · 共同編輯，所有人皆可檢視與登記</p>
+  </header>
+
+  <section class="name-section">
+    <label class="name-label" for="userName">登記姓名</label>
+    <input type="text" id="userName" class="name-input" placeholder="請輸入您的姓名" maxlength="20" autocomplete="off">
+    <p class="name-hint">※ 姓名儲存於您的裝置；登記排班時將公開顯示給其他人</p>
+  </section>
+
+  <div class="toolbar">
+    <nav class="month-nav" id="monthNav"></nav>
+    <div class="toolbar-actions">
+      <button class="action-btn" id="myShiftsBtn" title="檢視與取消自己的所有班次" disabled>
+        我的班表 <span class="badge" id="myShiftsBadge">0</span>
+      </button>
+      <button class="action-btn" id="batchToggleBtn" title="一次登記多個日期">批次登記</button>
+      <button class="action-btn" id="refreshBtn" title="重新載入最新資料">
+        <span class="spin">↻</span> 重新整理
+      </button>
+    </div>
+  </div>
+
+  <div class="legend">
+    <div class="legend-item"><span class="legend-dot" style="background: var(--shift-morning)"></span>早班 08:30 — 12:30</div>
+    <div class="legend-item"><span class="legend-dot" style="background: var(--shift-afternoon)"></span>午班 13:00 — 17:00</div>
+  </div>
+
+  <div class="calendar-wrap">
+    <main class="calendar">
+      <div class="weekdays">
+        <div class="weekday">一</div>
+        <div class="weekday">二</div>
+        <div class="weekday">三</div>
+        <div class="weekday">四</div>
+        <div class="weekday">五</div>
+      </div>
+      <div class="days" id="daysGrid"></div>
+    </main>
+    <div class="loading-overlay" id="loadingOverlay"></div>
+  </div>
+
+  <div class="summary" id="summary"></div>
+
+</div>
+
+<div class="batch-bar" id="batchBar">
+  <div class="batch-bar-inner">
+    <div class="batch-row header">
+      <div class="batch-status">
+        <span class="title-tag">批次登記模式</span>
+        <span class="count-text">已選 <strong id="batchCount">0</strong> 天</span>
+      </div>
+      <button class="batch-exit-btn" id="batchExitBtn">結束 ×</button>
+    </div>
+    <div class="batch-row">
+      <span class="batch-label">快選日期</span>
+      <div class="batch-quick-buttons" id="quickDays"></div>
+    </div>
+    <div class="batch-row">
+      <div class="batch-shift-selector">
+        <span class="batch-label">班次</span>
+        <button class="shift-pick morning active" data-shift="morning">早班</button>
+        <button class="shift-pick afternoon" data-shift="afternoon">午班</button>
+      </div>
+      <div class="batch-actions">
+        <button class="batch-btn remove" id="batchRemoveBtn" disabled>取消登記</button>
+        <button class="batch-btn add" id="batchAddBtn" disabled>登記所選日期</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal">
+    <div class="modal-header">
+      <div>
+        <div class="modal-date" id="modalDate"></div>
+        <div class="modal-weekday" id="modalWeekday"></div>
+      </div>
+      <button class="modal-close" id="modalClose" aria-label="關閉">×</button>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="myShiftsOverlay">
+  <div class="modal">
+    <div class="modal-header">
+      <div>
+        <div class="modal-date">我的班表</div>
+        <div class="modal-weekday" id="myShiftsSubtitle">所有已登記班次</div>
+      </div>
+      <button class="modal-close" id="myShiftsClose" aria-label="關閉">×</button>
+    </div>
+    <div class="my-shifts-summary" id="myShiftsSummary" style="display:none;">
+      <span class="total-count">共登記 <strong id="myShiftsTotal">0</strong> 班</span>
+      <button class="cancel-all-btn" id="cancelAllBtn">取消全部</button>
+    </div>
+    <div class="my-shifts-body">
+      <div class="my-shifts-list" id="myShiftsList"></div>
+    </div>
+  </div>
+</div>
+
+<div class="confirm-overlay" id="confirmOverlay">
+  <div class="confirm-dialog">
+    <div class="confirm-title" id="confirmTitle">確認</div>
+    <p class="confirm-message" id="confirmMessage"></p>
+    <div class="confirm-actions">
+      <button class="confirm-btn confirm-cancel" id="confirmCancelBtn">取消</button>
+      <button class="confirm-btn confirm-ok" id="confirmOkBtn">確定</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+  // ═══════════════════════════════════════════════════════════
+  // 設定區：請貼上你部署好的 Google Apps Script 網址
+  // 部署步驟請見「部署說明.md」
+  // ═══════════════════════════════════════════════════════════
+  const API_URL = 'PASTE_YOUR_APPS_SCRIPT_URL_HERE';
+  // ═══════════════════════════════════════════════════════════
+
+  const SHIFTS = [
+    { key: 'morning',   name: '早班', time: '08:30 — 12:30' },
+    { key: 'afternoon', name: '午班', time: '13:00 — 17:00' }
+  ];
+
+  function escapeHtml(s) {
+    return String(s).replace(/[&<>"']/g, c => ({
+      '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+    }[c]));
+  }
+  const MONTHS = [6, 7, 8, 9, 10, 11, 12];
+  const YEAR = 2026;
+  const WEEKDAY_NAMES = ['週日', '週一', '週二', '週三', '週四', '週五', '週六'];
+
+  let currentMonth = 6;
+  let monthData = {};  // { 'shifts:2026-06': { '1': { morning: [...], afternoon: [...] }, ... } }
+  let userName = '';
+  let batchMode = false;
+  let selectedDays = new Set();
+  let batchShift = 'morning';
+
+  // ── Storage helpers ──
+  function monthKey(y, m) {
+    return `shifts:${y}-${String(m).padStart(2, '0')}`;
+  }
+
+  async function apiCall(action, params) {
+    if (!API_URL || API_URL.includes('PASTE_YOUR_APPS_SCRIPT')) {
+      return { ok: false, error: 'API_URL_NOT_SET' };
+    }
+    try {
+      const res = await fetch(API_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify({ action, ...params })
+      });
+      if (!res.ok) return { ok: false, error: `HTTP ${res.status}` };
+      return await res.json();
+    } catch (e) {
+      console.error('API error:', e);
+      return { ok: false, error: String(e) };
+    }
+  }
+
+  function formatDateStr(y, m, d) {
+    return `${y}-${String(m).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
+  }
+
+  async function loadAllData() {
+    const result = await apiCall('getAll');
+    if (!result.ok) return false;
+    // Reset all months
+    MONTHS.forEach(m => { monthData[monthKey(YEAR, m)] = {}; });
+    // Populate from server response
+    (result.data || []).forEach(entry => {
+      const parts = entry.date.split('-').map(Number);
+      const y = parts[0], mo = parts[1], da = parts[2];
+      if (y !== YEAR) return;
+      const key = monthKey(y, mo);
+      if (!monthData[key]) monthData[key] = {};
+      if (!monthData[key][String(da)]) monthData[key][String(da)] = {};
+      if (!monthData[key][String(da)][entry.shift]) {
+        monthData[key][String(da)][entry.shift] = [];
+      }
+      monthData[key][String(da)][entry.shift].push(entry.name);
+    });
+    return true;
+  }
+
+  async function loadMonth(y, m) {
+    // For the online version, we always load all data since it's a single call
+    return loadAllData();
+  }
+
+  // saveMonth is no longer used — operations call the API directly.
+
+  function loadUserName() {
+    try {
+      const name = localStorage.getItem('shiftSched_userName');
+      if (name) {
+        userName = name;
+        document.getElementById('userName').value = userName;
+      }
+    } catch (e) { /* no saved name */ }
+  }
+
+  function saveUserName(name) {
+    try {
+      if (name) localStorage.setItem('shiftSched_userName', name);
+      else localStorage.removeItem('shiftSched_userName');
+    } catch (e) { console.error(e); }
+  }
+
+  // ── UI helpers ──
+  function showToast(msg, isError = false) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.className = 'toast show' + (isError ? ' error' : '');
+    clearTimeout(showToast._tid);
+    showToast._tid = setTimeout(() => {
+      t.className = 'toast' + (isError ? ' error' : '');
+    }, 2200);
+  }
+
+  function showConfirm(message, title = '確認操作') {
+    return new Promise(resolve => {
+      const overlay = document.getElementById('confirmOverlay');
+      document.getElementById('confirmTitle').textContent = title;
+      document.getElementById('confirmMessage').textContent = message;
+
+      const okBtn = document.getElementById('confirmOkBtn');
+      const cancelBtn = document.getElementById('confirmCancelBtn');
+
+      const cleanup = (result) => {
+        overlay.classList.remove('show');
+        okBtn.onclick = null;
+        cancelBtn.onclick = null;
+        overlay.onclick = null;
+        document.removeEventListener('keydown', onKey);
+        resolve(result);
+      };
+
+      const onKey = e => {
+        if (e.key === 'Escape') cleanup(false);
+        else if (e.key === 'Enter') cleanup(true);
+      };
+
+      okBtn.onclick = () => cleanup(true);
+      cancelBtn.onclick = () => cleanup(false);
+      overlay.onclick = e => {
+        if (e.target.id === 'confirmOverlay') cleanup(false);
+      };
+      document.addEventListener('keydown', onKey);
+
+      overlay.classList.add('show');
+      // Focus the OK button so Enter works immediately
+      setTimeout(() => okBtn.focus(), 50);
+    });
+  }
+
+  function setLoading(on) {
+    document.getElementById('loadingOverlay').classList.toggle('show', on);
+  }
+
+  // ── Render ──
+  function renderMonthNav() {
+    const nav = document.getElementById('monthNav');
+    nav.innerHTML = '';
+    MONTHS.forEach(m => {
+      const btn = document.createElement('button');
+      btn.className = 'month-tab' + (m === currentMonth ? ' active' : '');
+      btn.textContent = `${m} 月`;
+      btn.onclick = () => switchMonth(m);
+      nav.appendChild(btn);
+    });
+  }
+
+  async function switchMonth(m) {
+    currentMonth = m;
+    if (batchMode) selectedDays.clear();
+    renderMonthNav();
+    setLoading(true);
+    await loadMonth(YEAR, currentMonth);
+    setLoading(false);
+    renderCalendar();
+    renderSummary();
+    if (batchMode) updateBatchUI();
+  }
+
+  function renderCalendar() {
+    const grid = document.getElementById('daysGrid');
+    grid.innerHTML = '';
+
+    const daysInMonth = new Date(YEAR, currentMonth, 0).getDate();
+    const today = new Date();
+    const isCurrentMonth = today.getFullYear() === YEAR && today.getMonth() === currentMonth - 1;
+
+    const key = monthKey(YEAR, currentMonth);
+    const data = monthData[key] || {};
+
+    // Find first workday (Mon-Fri) of the month
+    let firstWorkdayWd = 1;
+    for (let d = 1; d <= daysInMonth; d++) {
+      const wd = new Date(YEAR, currentMonth - 1, d).getDay();
+      if (wd >= 1 && wd <= 5) { firstWorkdayWd = wd; break; }
+    }
+
+    // Empty cells before the first workday (5-col grid: Mon=col1 ... Fri=col5)
+    for (let i = 0; i < firstWorkdayWd - 1; i++) {
+      const e = document.createElement('div');
+      e.className = 'day empty';
+      grid.appendChild(e);
+    }
+
+    for (let d = 1; d <= daysInMonth; d++) {
+      const date = new Date(YEAR, currentMonth - 1, d);
+      const wd = date.getDay();
+      if (wd === 0 || wd === 6) continue; // Skip weekends
+
+      const cell = document.createElement('div');
+      cell.className = 'day';
+      if (isCurrentMonth && d === today.getDate()) cell.classList.add('today');
+      if (batchMode && selectedDays.has(d)) cell.classList.add('selected');
+
+      const dayShifts = data[String(d)] || {};
+      cell.innerHTML = `<div class="day-num">${d}</div>`;
+      const wrap = document.createElement('div');
+      wrap.className = 'day-shifts';
+
+      SHIFTS.forEach(s => {
+        const people = dayShifts[s.key] || [];
+        const isMine = userName && people.includes(userName);
+        const div = document.createElement('div');
+        if (people.length > 0) {
+          div.className = `day-shift ${s.key}${isMine ? ' mine' : ''}`;
+          const MAX = 5;
+          const visible = people.slice(0, MAX);
+          const overflow = people.length - MAX;
+          const namesHtml = visible.map(n => {
+            const cls = (userName && n === userName) ? 'name-mine' : '';
+            return `<span class="${cls}">${escapeHtml(n)}</span>`;
+          }).join('、') + (overflow > 0 ? `<span class="name-overflow"> +${overflow}</span>` : '');
+          div.innerHTML = `<span class="shift-tag">${s.name}</span><span class="shift-names-inline">${namesHtml}</span>`;
+        } else {
+          div.className = `day-shift ${s.key} empty-slot`;
+          div.innerHTML = `<span class="shift-tag">${s.name}</span><span class="shift-names-inline empty">可登記</span>`;
+        }
+        wrap.appendChild(div);
+      });
+
+      cell.appendChild(wrap);
+      cell.onclick = () => {
+        if (batchMode) toggleDaySelection(d);
+        else openModal(d);
+      };
+      grid.appendChild(cell);
+    }
+  }
+
+  function renderSummary() {
+    const sum = document.getElementById('summary');
+    const key = monthKey(YEAR, currentMonth);
+    const data = monthData[key] || {};
+
+    let totalShifts = 0;
+    let myShifts = 0;
+    const peopleSet = new Set();
+    Object.values(data).forEach(day => {
+      SHIFTS.forEach(s => {
+        const arr = day[s.key] || [];
+        totalShifts += arr.length;
+        arr.forEach(n => {
+          peopleSet.add(n);
+          if (userName && n === userName) myShifts++;
+        });
+      });
+    });
+
+    sum.innerHTML = `
+      <span class="summary-label">${currentMonth} 月統計</span>
+      <span class="summary-item">總登記人次 <strong>${totalShifts}</strong></span>
+      <span class="summary-item">參與人數 <strong>${peopleSet.size}</strong></span>
+      ${userName ? `<span class="summary-item">我的班次 <strong>${myShifts}</strong></span>` : ''}
+    `;
+  }
+
+  // ── Modal ──
+  function openModal(day) {
+    const overlay = document.getElementById('modalOverlay');
+    const date = new Date(YEAR, currentMonth - 1, day);
+    document.getElementById('modalDate').textContent = `${YEAR}年${currentMonth}月${day}日`;
+    document.getElementById('modalWeekday').textContent = WEEKDAY_NAMES[date.getDay()];
+    overlay.dataset.day = day;
+    renderModalBody(day);
+    overlay.classList.add('show');
+  }
+
+  function closeModal() {
+    document.getElementById('modalOverlay').classList.remove('show');
+  }
+
+  function renderModalBody(day) {
+    const body = document.getElementById('modalBody');
+    body.innerHTML = '';
+
+    const key = monthKey(YEAR, currentMonth);
+    const dayData = (monthData[key] || {})[String(day)] || {};
+
+    SHIFTS.forEach(s => {
+      const people = dayData[s.key] || [];
+      const hasRegistration = people.length > 0;
+
+      const block = document.createElement('div');
+      block.className = 'shift-block';
+
+      const header = document.createElement('div');
+      header.className = 'shift-block-header';
+      header.innerHTML = `
+        <div class="shift-name-wrap">
+          <div class="shift-marker ${s.key}"></div>
+          <div>
+            <div class="shift-name">${s.name}</div>
+            <div class="shift-time">${s.time}</div>
+          </div>
+        </div>
+      `;
+      const btn = document.createElement('button');
+      if (hasRegistration) {
+        // Slot is taken — anyone can cancel (with confirmation)
+        btn.className = 'shift-action-btn leave';
+        btn.textContent = '取消登記';
+        btn.title = '取消此筆登記（會跳出確認）';
+        btn.onclick = () => toggleShift(day, s.key, btn);
+      } else {
+        // Slot is empty — register with current name
+        btn.className = 'shift-action-btn join';
+        btn.textContent = '登記';
+        btn.disabled = !userName;
+        btn.title = !userName ? '請先在上方輸入姓名' : '';
+        btn.onclick = () => toggleShift(day, s.key, btn);
+      }
+      header.appendChild(btn);
+      block.appendChild(header);
+
+      const peopleDiv = document.createElement('div');
+      peopleDiv.className = 'shift-people';
+      if (people.length === 0) {
+        peopleDiv.innerHTML = '<span class="shift-empty">尚無人登記，可登記</span>';
+      } else {
+        people.forEach(name => {
+          const chip = document.createElement('span');
+          chip.className = 'person-chip' + (name === userName ? ' is-me' : '');
+          chip.textContent = name;
+          peopleDiv.appendChild(chip);
+        });
+      }
+      block.appendChild(peopleDiv);
+      body.appendChild(block);
+    });
+  }
+
+  // ── Toggle (single-person-per-slot, API-based) ──
+  async function toggleShift(day, shiftKey, btnEl) {
+    if (btnEl) btnEl.disabled = true;
+
+    const key = monthKey(YEAR, currentMonth);
+    const shifts = (monthData[key] || {})[String(day)] || {};
+    const people = shifts[shiftKey] || [];
+    const shiftName = SHIFTS.find(s => s.key === shiftKey).name;
+    const dateStr = formatDateStr(YEAR, currentMonth, day);
+
+    let action, result;
+    if (people.length > 0) {
+      // Slot taken — confirm and cancel via API
+      const names = people.join('、');
+      if (btnEl) btnEl.disabled = false;
+      const confirmed = await showConfirm(
+        `將取消「${names}」於 ${currentMonth}/${day} ${shiftName} 的登記。`,
+        '確認取消登記'
+      );
+      if (!confirmed) {
+        renderModalBody(day);
+        return;
+      }
+      if (btnEl) btnEl.disabled = true;
+      result = await apiCall('cancel', { date: dateStr, shift: shiftKey });
+      action = 'cancel';
+    } else {
+      if (!userName) {
+        showToast('請先輸入姓名', true);
+        if (btnEl) btnEl.disabled = false;
+        return;
+      }
+      result = await apiCall('register', { date: dateStr, shift: shiftKey, name: userName });
+      action = 'add';
+    }
+
+    if (result.ok) {
+      await loadAllData();
+      renderCalendar();
+      renderModalBody(day);
+      renderSummary();
+      updateMyShiftsBadge();
+      showToast(action === 'add' ? '已登記排班' : '已取消登記');
+    } else {
+      if (result.error === 'taken') {
+        showToast(`此班次已被「${result.existingName || '他人'}」登記`, true);
+      } else if (result.error === 'API_URL_NOT_SET') {
+        showToast('尚未設定後端連結，請見部署說明', true);
+      } else {
+        showToast('儲存失敗：' + (result.error || '請稍後再試'), true);
+      }
+      await loadAllData();
+      renderCalendar();
+      renderModalBody(day);
+      renderSummary();
+      updateMyShiftsBadge();
+      if (btnEl) btnEl.disabled = false;
+    }
+  }
+
+  // ── Batch mode ──
+  function toggleBatchMode() {
+    batchMode = !batchMode;
+    selectedDays.clear();
+    updateBatchUI();
+    renderCalendar();
+    if (batchMode) closeModal();
+  }
+
+  function updateBatchUI() {
+    const bar = document.getElementById('batchBar');
+    const btn = document.getElementById('batchToggleBtn');
+    const cal = document.querySelector('.calendar');
+    bar.classList.toggle('show', batchMode);
+    btn.classList.toggle('active', batchMode);
+    cal.classList.toggle('batch-mode', batchMode);
+    document.body.classList.toggle('batch-active', batchMode);
+    btn.textContent = batchMode ? '結束批次' : '批次登記';
+
+    const count = selectedDays.size;
+    document.getElementById('batchCount').textContent = count;
+
+    const noName = !userName;
+    const noDays = count === 0;
+    const addBtn = document.getElementById('batchAddBtn');
+    const removeBtn = document.getElementById('batchRemoveBtn');
+    addBtn.disabled = noName || noDays;
+    removeBtn.disabled = noName || noDays;
+    const tip = noName ? '請先輸入姓名' : (noDays ? '請先選取日期' : '');
+    addBtn.title = tip;
+    removeBtn.title = tip;
+
+    if (batchMode) renderBatchQuickButtons();
+  }
+
+  function toggleDaySelection(day) {
+    if (selectedDays.has(day)) selectedDays.delete(day);
+    else selectedDays.add(day);
+    updateBatchUI();
+    renderCalendar();
+  }
+
+  function renderBatchQuickButtons() {
+    const container = document.getElementById('quickDays');
+    if (!container) return;
+    container.innerHTML = '';
+
+    const WD_CHARS = ['日', '一', '二', '三', '四', '五', '六'];
+    const daysInMonth = new Date(YEAR, currentMonth, 0).getDate();
+
+    let prevWd = null;
+    for (let d = 1; d <= daysInMonth; d++) {
+      const wd = new Date(YEAR, currentMonth - 1, d).getDay();
+      if (wd === 0 || wd === 6) continue;
+
+      // Insert a small spacer between weeks for visual grouping
+      if (prevWd !== null && wd <= prevWd) {
+        const gap = document.createElement('span');
+        gap.className = 'week-gap';
+        container.appendChild(gap);
+      }
+
+      const btn = document.createElement('button');
+      btn.className = 'day-btn' + (selectedDays.has(d) ? ' active' : '');
+      btn.dataset.day = d;
+      btn.innerHTML = `${d}<span class="d-wd">${WD_CHARS[wd]}</span>`;
+      btn.title = `${currentMonth}月${d}日 週${WD_CHARS[wd]}`;
+      btn.onclick = () => toggleDaySelection(d);
+      container.appendChild(btn);
+
+      prevWd = wd;
+    }
+
+    // Visual separator between date buttons and action buttons
+    const divider = document.createElement('span');
+    divider.className = 'quick-divider';
+    container.appendChild(divider);
+
+    const allBtn = document.createElement('button');
+    allBtn.textContent = '全選';
+    allBtn.title = '選取該月全部工作日（再按一次取消）';
+    allBtn.onclick = () => selectByGroup('all');
+    container.appendChild(allBtn);
+
+    const clearBtn = document.createElement('button');
+    clearBtn.className = 'clear-btn';
+    clearBtn.textContent = '清除';
+    clearBtn.title = '清除所有已選日期';
+    clearBtn.onclick = () => selectByGroup('clear');
+    container.appendChild(clearBtn);
+  }
+
+  function selectByGroup(group) {
+    const lastDay = new Date(YEAR, currentMonth, 0).getDate();
+    if (group === 'clear') {
+      selectedDays.clear();
+    } else if (group === 'all') {
+      const workdays = [];
+      for (let d = 1; d <= lastDay; d++) {
+        const wd = new Date(YEAR, currentMonth - 1, d).getDay();
+        if (wd >= 1 && wd <= 5) workdays.push(d);
+      }
+      const allSelected = workdays.length > 0 && workdays.every(d => selectedDays.has(d));
+      if (allSelected) workdays.forEach(d => selectedDays.delete(d));
+      else workdays.forEach(d => selectedDays.add(d));
+    }
+    updateBatchUI();
+    renderCalendar();
+  }
+
+  function pickShift(key) {
+    batchShift = key;
+    document.querySelectorAll('.shift-pick').forEach(b => {
+      b.classList.toggle('active', b.dataset.shift === key);
+    });
+  }
+
+  async function applyBatch(action) {
+    if (!userName) { showToast('請先輸入姓名', true); return; }
+    if (selectedDays.size === 0) return;
+
+    const days = Array.from(selectedDays).sort((a, b) => a - b);
+    const dates = days.map(d => formatDateStr(YEAR, currentMonth, d));
+
+    setLoading(true);
+    const result = await apiCall(
+      action === 'add' ? 'bulkRegister' : 'bulkCancel',
+      { dates, shift: batchShift, name: userName }
+    );
+
+    if (result.ok) {
+      await loadAllData();
+      setLoading(false);
+      const shiftName = SHIFTS.find(s => s.key === batchShift).name;
+      let msg;
+      if (action === 'add') {
+        msg = (result.skipped || 0) === 0
+          ? `已登記 ${result.added} 天 ${shiftName}`
+          : `已登記 ${result.added} 天 ${shiftName}（${result.skipped} 天已有人登記，自動跳過）`;
+      } else {
+        msg = (result.skipped || 0) === 0
+          ? `已取消 ${result.removed} 天 ${shiftName}`
+          : `已取消 ${result.removed} 天 ${shiftName}（${result.skipped} 天非您的登記，未處理）`;
+      }
+      showToast(msg);
+      selectedDays.clear();
+      updateBatchUI();
+      renderCalendar();
+      renderSummary();
+      updateMyShiftsBadge();
+    } else {
+      setLoading(false);
+      if (result.error === 'API_URL_NOT_SET') {
+        showToast('尚未設定後端連結，請見部署說明', true);
+      } else {
+        showToast('儲存失敗：' + (result.error || '請稍後再試'), true);
+      }
+    }
+  }
+
+  // ── My Shifts overview ──
+  const WD_FULL = ['日', '一', '二', '三', '四', '五', '六'];
+
+  function getMyShifts() {
+    if (!userName) return [];
+    const result = [];
+    MONTHS.forEach(m => {
+      const key = monthKey(YEAR, m);
+      const data = monthData[key] || {};
+      Object.keys(data).forEach(d => {
+        const day = parseInt(d);
+        if (!day) return;
+        SHIFTS.forEach(s => {
+          const people = data[d][s.key] || [];
+          if (people.includes(userName)) {
+            result.push({
+              month: m,
+              day,
+              shiftKey: s.key,
+              shiftName: s.name,
+              shiftTime: s.time,
+              date: new Date(YEAR, m - 1, day)
+            });
+          }
+        });
+      });
+    });
+    result.sort((a, b) => {
+      if (a.date - b.date !== 0) return a.date - b.date;
+      // morning before afternoon on same day
+      return SHIFTS.findIndex(s => s.key === a.shiftKey) - SHIFTS.findIndex(s => s.key === b.shiftKey);
+    });
+    return result;
+  }
+
+  function updateMyShiftsBadge() {
+    const badge = document.getElementById('myShiftsBadge');
+    const btn = document.getElementById('myShiftsBtn');
+    if (!userName) {
+      badge.textContent = '0';
+      btn.classList.remove('has-shifts');
+      btn.disabled = true;
+      btn.title = '請先輸入姓名';
+      return;
+    }
+    const shifts = getMyShifts();
+    badge.textContent = shifts.length;
+    btn.classList.toggle('has-shifts', shifts.length > 0);
+    btn.disabled = false;
+    btn.title = '檢視與取消自己的所有班次';
+  }
+
+  function openMyShifts() {
+    if (!userName) {
+      showToast('請先輸入姓名', true);
+      return;
+    }
+    renderMyShifts();
+    document.getElementById('myShiftsOverlay').classList.add('show');
+  }
+
+  function closeMyShifts() {
+    document.getElementById('myShiftsOverlay').classList.remove('show');
+  }
+
+  function renderMyShifts() {
+    const list = document.getElementById('myShiftsList');
+    const summary = document.getElementById('myShiftsSummary');
+    const subtitle = document.getElementById('myShiftsSubtitle');
+    const totalEl = document.getElementById('myShiftsTotal');
+    list.innerHTML = '';
+
+    const shifts = getMyShifts();
+
+    if (shifts.length === 0) {
+      summary.style.display = 'none';
+      subtitle.textContent = '尚無已登記班次';
+      list.innerHTML = `
+        <div class="my-shifts-empty">
+          <div class="empty-icon">○</div>
+          您目前還沒有登記任何班次<br>
+          <span style="font-size:12px;">關閉此視窗後，點選月曆上的日期即可登記</span>
+        </div>
+      `;
+      return;
+    }
+
+    summary.style.display = 'flex';
+    totalEl.textContent = shifts.length;
+    subtitle.textContent = `${userName} 的所有班次`;
+
+    // Group by month
+    const byMonth = {};
+    shifts.forEach(s => {
+      if (!byMonth[s.month]) byMonth[s.month] = [];
+      byMonth[s.month].push(s);
+    });
+
+    Object.keys(byMonth).sort((a, b) => a - b).forEach(m => {
+      const group = document.createElement('div');
+      group.className = 'month-group';
+      const header = document.createElement('div');
+      header.className = 'month-group-header';
+      header.innerHTML = `<span>${YEAR}年 ${m} 月</span><span class="month-count">${byMonth[m].length} 班</span>`;
+      group.appendChild(header);
+
+      byMonth[m].forEach(s => {
+        const item = document.createElement('div');
+        item.className = 'my-shift-item';
+        item.innerHTML = `
+          <span class="my-shift-date">${s.month}/${String(s.day).padStart(2,'0')}<span class="wd">週${WD_FULL[s.date.getDay()]}</span></span>
+          <span class="my-shift-tag ${s.shiftKey}">${s.shiftName}<span class="time">${s.shiftTime}</span></span>
+          <button class="my-shift-cancel" data-m="${s.month}" data-d="${s.day}" data-s="${s.shiftKey}">取消</button>
+        `;
+        group.appendChild(item);
+      });
+
+      list.appendChild(group);
+    });
+
+    list.querySelectorAll('.my-shift-cancel').forEach(btn => {
+      btn.onclick = () => cancelMyShift(
+        parseInt(btn.dataset.m),
+        parseInt(btn.dataset.d),
+        btn.dataset.s,
+        btn
+      );
+    });
+  }
+
+  async function cancelMyShift(month, day, shiftKey, btnEl) {
+    btnEl.disabled = true;
+    btnEl.textContent = '處理中…';
+
+    const dateStr = formatDateStr(YEAR, month, day);
+    const result = await apiCall('cancelOwn', { date: dateStr, shift: shiftKey, name: userName });
+
+    if (result.ok) {
+      await loadAllData();
+      const shiftName = SHIFTS.find(s => s.key === shiftKey).name;
+      showToast(`已取消 ${month}/${day} ${shiftName}`);
+      renderMyShifts();
+      updateMyShiftsBadge();
+      renderCalendar();
+      renderSummary();
+    } else {
+      showToast('取消失敗：' + (result.error || '請稍後再試'), true);
+      btnEl.disabled = false;
+      btnEl.textContent = '取消';
+    }
+  }
+
+  async function cancelAllMyShifts() {
+    if (!userName) return;
+    const shifts = getMyShifts();
+    if (shifts.length === 0) return;
+    const confirmed = await showConfirm(
+      `將取消全部 ${shifts.length} 個您已登記的班次，無法復原。`,
+      '取消全部我的登記'
+    );
+    if (!confirmed) return;
+
+    setLoading(true);
+    const result = await apiCall('cancelAllOwn', { name: userName });
+    setLoading(false);
+
+    if (result.ok) {
+      await loadAllData();
+      showToast(`已取消全部 ${result.removed} 個班次`);
+      renderMyShifts();
+      updateMyShiftsBadge();
+      renderCalendar();
+      renderSummary();
+    } else {
+      showToast('取消失敗：' + (result.error || '請稍後再試'), true);
+    }
+  }
+
+  // ── Refresh ──
+  async function refresh() {
+    const btn = document.getElementById('refreshBtn');
+    btn.classList.add('loading');
+    setLoading(true);
+    const ok = await loadAllData();
+    setLoading(false);
+    btn.classList.remove('loading');
+    if (!ok) {
+      showToast('連線失敗，請檢查網路或後端設定', true);
+      return;
+    }
+    renderCalendar();
+    renderSummary();
+    updateMyShiftsBadge();
+    const overlay = document.getElementById('modalOverlay');
+    if (overlay.classList.contains('show')) {
+      renderModalBody(parseInt(overlay.dataset.day));
+    }
+    const myOverlay = document.getElementById('myShiftsOverlay');
+    if (myOverlay.classList.contains('show')) {
+      renderMyShifts();
+    }
+    showToast('已更新');
+  }
+
+  // ── Init ──
+  async function init() {
+    renderMonthNav();
+
+    // Set initial month: if current real month is in range, start there
+    const now = new Date();
+    if (now.getFullYear() === YEAR && MONTHS.includes(now.getMonth() + 1)) {
+      currentMonth = now.getMonth() + 1;
+    }
+
+    // Name input
+    const nameInput = document.getElementById('userName');
+    let nameSaveTimer;
+    nameInput.addEventListener('input', e => {
+      userName = e.target.value.trim();
+      renderCalendar();
+      renderSummary();
+      updateMyShiftsBadge();
+      if (batchMode) updateBatchUI();
+      const overlay = document.getElementById('modalOverlay');
+      if (overlay.classList.contains('show')) {
+        renderModalBody(parseInt(overlay.dataset.day));
+      }
+      const myOverlay = document.getElementById('myShiftsOverlay');
+      if (myOverlay.classList.contains('show')) {
+        renderMyShifts();
+      }
+      clearTimeout(nameSaveTimer);
+      nameSaveTimer = setTimeout(() => saveUserName(userName), 400);
+    });
+
+    // Modal
+    document.getElementById('modalClose').onclick = closeModal;
+    document.getElementById('modalOverlay').onclick = e => {
+      if (e.target.id === 'modalOverlay') closeModal();
+    };
+
+    // My Shifts modal
+    document.getElementById('myShiftsBtn').onclick = openMyShifts;
+    document.getElementById('myShiftsClose').onclick = closeMyShifts;
+    document.getElementById('myShiftsOverlay').onclick = e => {
+      if (e.target.id === 'myShiftsOverlay') closeMyShifts();
+    };
+    document.getElementById('cancelAllBtn').onclick = cancelAllMyShifts;
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') {
+        closeModal();
+        closeMyShifts();
+        if (batchMode) toggleBatchMode();
+      }
+    });
+
+    // Refresh
+    document.getElementById('refreshBtn').onclick = refresh;
+
+    // Batch mode
+    document.getElementById('batchToggleBtn').onclick = toggleBatchMode;
+    document.getElementById('batchExitBtn').onclick = toggleBatchMode;
+    document.getElementById('batchAddBtn').onclick = () => applyBatch('add');
+    document.getElementById('batchRemoveBtn').onclick = () => applyBatch('remove');
+    document.querySelectorAll('.shift-pick').forEach(b => {
+      b.onclick = () => pickShift(b.dataset.shift);
+    });
+
+    // Load name from local device storage
+    loadUserName();
+
+    // Check API URL is configured
+    if (!API_URL || API_URL.includes('PASTE_YOUR_APPS_SCRIPT')) {
+      showToast('尚未設定後端網址，請見「部署說明.md」', true);
+      renderMonthNav();
+      renderCalendar();
+      renderSummary();
+      return;
+    }
+
+    // Load all data from server
+    setLoading(true);
+    const ok = await loadAllData();
+    setLoading(false);
+    if (!ok) {
+      showToast('無法連線到後端，請檢查網址或網路', true);
+    }
+
+    renderMonthNav();
+    renderCalendar();
+    renderSummary();
+    updateMyShiftsBadge();
+  }
+
+  init();
+</script>
+</body>
+</html>
